@@ -242,7 +242,7 @@ output "ec2_public_ip" {
 
 1. **Clone o Repositório**:
    ```bash
-   git clone https://github.com/seu_usuario/VExpenses.git
+   https://github.com/jusimargv/Desafio_VExpenses.git
    cd VExpenses
    ```
 
