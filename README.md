@@ -81,6 +81,7 @@ O par de chaves criado é registrado na AWS e vinculado à chave pública gerada
    ssh -i <caminho-da-chave-privada> ec2-user@<ip-publico-ec2>
    ```
 
+<<<<<<< HEAD
 ---
 
 ## **Melhorias Implementadas**
@@ -119,3 +120,12 @@ Se houver qualquer dúvida ou problemas durante a configuração, entre em conta
 
 ---
 
+=======
+6. **Verifique se o Nginx está em execução**:
+    ```
+    
+   - Abra um navegador e acesse `http://<ec2_public_ip>` para verificar se o Nginx está rodando.
+
+
+
+>>>>>>> 9be5bfb37e0b31016014475d28c7bc8877f388e8
