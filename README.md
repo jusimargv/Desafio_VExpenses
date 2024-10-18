@@ -78,7 +78,7 @@ O par de chaves criado é registrado na AWS e vinculado à chave pública gerada
 
 4. O Terraform exibirá a chave privada e o IP público da instância EC2. Use essas informações para acessar a instância via SSH:
    ```bash
-   ssh -i <caminho-da-chave-privada> ec2-user@<ip-publico-ec2>
+   ssh -i <caminho-da-chave-privada> ec2-user@<ip-publico-ec2> 
    ```
 
 <<<<<<< HEAD

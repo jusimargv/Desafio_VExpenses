@@ -101,7 +101,7 @@ resource "aws_security_group" "main_sg" {
     to_port     = 22
     protocol    = "tcp"
     # Substitua "123.456.789.123/32" pelo seu endereço IP público
-    cidr_blocks = ["192.168.0.12"]
+    cidr_blocks = ["192.168.0.123"]
   }
 
   # Regra de saída para permitir todo o tráfego de saída
