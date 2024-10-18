@@ -269,7 +269,9 @@ output "ec2_public_ip" {
    ```
 
 6. **Verifique se o Nginx está em execução**:
+    ```
+    
    - Abra um navegador e acesse `http://<ec2_public_ip>` para verificar se o Nginx está rodando.
-```
 
-Você pode personalizar a URL do repositório e as instruções conforme necessário. Sinta-se à vontade para fazer ajustes adicionais!
+
+
