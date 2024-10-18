@@ -1,9 +1,12 @@
+
   # **Desafio de Infraestrutura como Código (IaC) com Terraform**
 
 Este projeto implementa uma infraestrutura básica na AWS utilizando **Terraform**. A configuração inclui uma VPC, Subnet, Security Group, Key Pair e uma instância EC2 com o servidor **Nginx** automaticamente instalado.
 
 ## **Tabela de Conteúdos**
 - [Descrição Técnica](#descrição-técnica)
+- [Código Original](#código-original)
+- [Mudanças Realizadas](#mudanças-realizadas)
 - [Instruções de Uso](#instruções-de-uso)
 - [Melhorias Implementadas](#melhorias-implementadas)
 - [Recursos Criados](#recursos-criados)
@@ -14,41 +17,41 @@ Este projeto implementa uma infraestrutura básica na AWS utilizando **Terraform
 
 ## **Descrição Técnica**
 
-### **1. Provider AWS**
-O provedor AWS é configurado para a região `us-east-1`.
+### **Código Original**
+1. **Provider AWS**: O provedor AWS é configurado para a região `us-east-1`.
+  
+2. **Variáveis**:
+   - `projeto`: Nome do projeto (default: "VExpenses").
+   - `candidato`: Nome do candidato (default: "SeuNome").
 
-### **2. Variáveis**
-As variáveis permitem personalizar o nome do projeto e do candidato:
-- `projeto`: Define o nome do projeto. Valor padrão: `"VExpenses"`.
-- `candidato`: Define o nome do candidato. Valor padrão: `"SeuNome"`.
+3. **TLS Private Key**: Gera uma chave privada RSA de 2048 bits para acesso SSH à instância EC2.
 
-### **3. TLS Private Key**
-Uma chave privada RSA de 2048 bits é gerada localmente para acesso SSH à instância EC2.
+4. **Par de Chaves (Key Pair)**: Cria um par de chaves na AWS usando a chave pública gerada.
 
-### **4. Par de Chaves (Key Pair)**
-O par de chaves criado é registrado na AWS e vinculado à chave pública gerada.
+5. **VPC e Subnet**:
+   - Cria uma VPC com o bloco CIDR `10.0.0.0/16`.
+   - Cria uma Subnet com o bloco CIDR `10.0.1.0/24` na zona de disponibilidade `us-east-1a`.
 
-### **5. VPC e Subnet**
-- **VPC**: Uma Virtual Private Cloud (VPC) é criada com o bloco CIDR `10.0.0.0/16`.
-- **Subnet**: Uma Subnet é criada com o bloco CIDR `10.0.1.0/24` na zona de disponibilidade `us-east-1a`.
+6. **Internet Gateway e Tabela de Rotas**: 
+   - Cria um Internet Gateway para permitir a comunicação da VPC com a internet.
+   - Cria uma tabela de rotas que permite tráfego de saída (`0.0.0.0/0`).
 
-### **6. Internet Gateway e Tabela de Rotas**
-- **Internet Gateway**: Conecta a VPC à internet.
-- **Route Table**: Cria uma rota padrão (`0.0.0.0/0`) para permitir o tráfego de saída através do Internet Gateway.
+7. **Grupo de Segurança (Security Group)**:
+   - Permite acesso SSH na porta 22 de qualquer IP (`0.0.0.0/0`), o que pode ser um risco de segurança.
+   - Permite todo o tráfego de saída.
 
-### **7. Grupo de Segurança (Security Group)**
-- Permite **SSH** na porta 22 a partir de um IP específico (substitua pelo seu IP no código).
-- Permite **HTTP** na porta 80 e **HTTPS** na porta 443 a partir de qualquer IP.
-- Permite todo o tráfego de saída.
+8. **Instância EC2**: 
+   - Cria uma instância EC2 `t2.micro` usando a AMI mais recente do Debian 12.
+   - Instala e inicia o Nginx automaticamente usando `user_data`.
 
-### **8. Instância EC2**
-- **AMI**: A imagem mais recente do **Debian 12** é utilizada.
-- **Instância**: Um EC2 `t2.micro` (grátis para o nível AWS Free Tier) é criado, associado à Subnet, ao Security Group e à Key Pair gerada.
-- **Automação (user_data)**: Um script de inicialização instala e configura automaticamente o servidor **Nginx** na instância.
+9. **Outputs**: 
+   - Exibe a chave privada e o IP público da instância EC2.
 
-### **9. Outputs**
-- **Chave Privada**: A chave privada gerada é exibida como um output sensível para acesso SSH.
-- **IP Público**: O endereço IP público da instância EC2 é exibido para acesso ao servidor.
+### **Mudanças Realizadas**
+1. **Regras de Segurança**:
+   - Restringiu o acesso SSH a um IP específico, aumentando a segurança.
+   - Adicionadas regras para permitir tráfego HTTP (porta 80) e HTTPS (porta 443) a partir de qualquer IP.
+
 
 ---
 

@@ -101,7 +101,7 @@ resource "aws_security_group" "main_sg" {
     to_port     = 22
     protocol    = "tcp"
     # Substitua "123.456.789.123/32" pelo seu endereço IP público
-    cidr_blocks = ["123.456.789.123/32"]
+    cidr_blocks = ["189.35.34.235"]
   }
 
   # Regra de entrada para permitir HTTP (porta 80)
