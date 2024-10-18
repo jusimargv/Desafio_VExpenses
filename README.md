@@ -1,4 +1,4 @@
-# **Desafio de Infraestrutura como Código (IaC) com Terraform**
+  # **Desafio de Infraestrutura como Código (IaC) com Terraform**
 
 Este projeto implementa uma infraestrutura básica na AWS utilizando **Terraform**. A configuração inclui uma VPC, Subnet, Security Group, Key Pair e uma instância EC2 com o servidor **Nginx** automaticamente instalado.
 
@@ -38,6 +38,7 @@ O par de chaves criado é registrado na AWS e vinculado à chave pública gerada
 
 ### **7. Grupo de Segurança (Security Group)**
 - Permite **SSH** na porta 22 a partir de um IP específico (substitua pelo seu IP no código).
+- Permite **HTTP** na porta 80 e **HTTPS** na porta 443 a partir de qualquer IP.
 - Permite todo o tráfego de saída.
 
 ### **8. Instância EC2**
@@ -78,14 +79,19 @@ O par de chaves criado é registrado na AWS e vinculado à chave pública gerada
 
 4. O Terraform exibirá a chave privada e o IP público da instância EC2. Use essas informações para acessar a instância via SSH:
    ```bash
-   ssh -i <caminho-da-chave-privada> ec2-user@<ip-publico-ec2> 
+   ssh -i <caminho-da-chave-privada> ec2-user@<ip-publico-ec2>
+   ```
+
+5. **Verifique se o Nginx está funcionando** acessando o IP público no seu navegador:
+   ```
+   http://<ip-publico-ec2>
    ```
 
 ---
 
 ## **Melhorias Implementadas**
 
-1. **Segurança**: O acesso SSH foi restrito a um IP específico, aumentando a segurança do ambiente.
+1. **Segurança**: O acesso SSH foi restrito a um IP específico, aumentando a segurança do ambiente. Novas regras de segurança permitem o acesso HTTP e HTTPS.
 2. **Automação**: A instalação do servidor **Nginx** é automatizada usando o script `user_data`, que também garante que o serviço inicie automaticamente.
 
 ---

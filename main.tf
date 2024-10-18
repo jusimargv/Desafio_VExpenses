@@ -101,7 +101,25 @@ resource "aws_security_group" "main_sg" {
     to_port     = 22
     protocol    = "tcp"
     # Substitua "123.456.789.123/32" pelo seu endereço IP público
-    cidr_blocks = ["192.168.0.123"]
+    cidr_blocks = ["123.456.789.123/32"]
+  }
+
+  # Regra de entrada para permitir HTTP (porta 80)
+  ingress {
+    description = "Allow HTTP"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Permite acesso a partir de qualquer lugar
+  }
+
+  # Regra de entrada para permitir HTTPS (porta 443)
+  ingress {
+    description = "Allow HTTPS"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]  # Permite acesso a partir de qualquer lugar
   }
 
   # Regra de saída para permitir todo o tráfego de saída
