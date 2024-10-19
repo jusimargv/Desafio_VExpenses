@@ -50,7 +50,7 @@ Este projeto implementa uma infraestrutura básica na AWS utilizando **Terraform
 ### **Mudanças Realizadas**
 1. **Regras de Segurança**:
    - Restringiu o acesso SSH a um IP específico, aumentando a segurança.
-   - Adicionadas regras para permitir tráfego HTTP (porta 80) e HTTPS (porta 443) a partir de qualquer IP.
+   - Adicionadas regras para permitir tráfego HTTP (porta 80) e HTTPS (porta 443) a partir de qualquer IP. 
 
 
 ---
