@@ -160,7 +160,7 @@ resource "aws_instance" "debian_ec2" {
   instance_type   = "t2.micro" # Tipo da instância (gratuito para testes)
   subnet_id       = aws_subnet.main_subnet.id
   key_name        = aws_key_pair.ec2_key_pair.key_name
-  security_groups = [aws_security_group.main_sg.name] # Associa o grupo de segurança criado-
+  security_groups = [aws_security_group.main_sg.name] # Associa o grupo de segurança criado
 
   # Associa um IP público à instância
   associate_public_ip_address = true
