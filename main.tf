@@ -1,7 +1,6 @@
 # Define o provedor da AWS e a região a ser usada
 provider "aws" {
-  region = "us-west-2a"
-  profile = "default"
+  region = "us-east-1"
 }
 
 # Variável para definir o nome do projeto
@@ -47,7 +46,7 @@ resource "aws_vpc" "main_vpc" {
 resource "aws_subnet" "main_subnet" {
   vpc_id            = aws_vpc.main_vpc.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-west-2a"
+  availability_zone = "us-east-1a"
 
   tags = {
     Name = "${var.projeto}-${var.candidato}-subnet"
