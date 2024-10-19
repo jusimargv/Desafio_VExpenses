@@ -1,6 +1,7 @@
 # Define o provedor da AWS e a região a ser usada
 provider "aws" {
-  region = "us-east-1"
+  region = "us-west-2a"
+  profile = "default"
 }
 
 # Variável para definir o nome do projeto
@@ -46,7 +47,7 @@ resource "aws_vpc" "main_vpc" {
 resource "aws_subnet" "main_subnet" {
   vpc_id            = aws_vpc.main_vpc.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "us-west-2a"
 
   tags = {
     Name = "${var.projeto}-${var.candidato}-subnet"
@@ -82,9 +83,7 @@ resource "aws_route_table_association" "main_association" {
   subnet_id      = aws_subnet.main_subnet.id
   route_table_id = aws_route_table.main_route_table.id
 
-  tags = {
-    Name = "${var.projeto}-${var.candidato}-route_table_association"
-  }
+  
 }
 
 # Cria um grupo de segurança que permite acesso SSH a partir de um IP específico
@@ -101,7 +100,7 @@ resource "aws_security_group" "main_sg" {
     to_port     = 22
     protocol    = "tcp"
     # Substitua "123.456.789.123/32" pelo seu endereço IP público
-    cidr_blocks = ["189.35.34.235"]
+    cidr_blocks = ["18.237.140.160/29"]
   }
 
   # Regra de entrada para permitir HTTP (porta 80)
@@ -151,7 +150,7 @@ data "aws_ami" "debian12" {
   }
 
   # O dono da imagem (ID da conta da Amazon)
-  owners = ["679593333241"]
+  owners = ["805569950627"]
 }
 
 # Cria uma instância EC2 com a AMI mais recente do Debian 12
