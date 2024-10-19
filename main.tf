@@ -80,9 +80,7 @@ resource "aws_route_table" "main_route_table" {
 # Associa a tabela de rotas à sub-rede criada anteriormente
 resource "aws_route_table_association" "main_association" {
   subnet_id      = aws_subnet.main_subnet.id
-  route_table_id = aws_route_table.main_route_table.id
-
-  
+  route_table_id = aws_route_table.main_route_table.id 
 }
 
 # Cria um grupo de segurança que permite acesso SSH a partir de um IP específico
